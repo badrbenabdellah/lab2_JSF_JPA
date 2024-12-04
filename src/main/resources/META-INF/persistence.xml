@@ -4,11 +4,14 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
              version="3.2">
     <persistence-unit name="default">
-
+        <class>ma.fstt.persistance.Client</class>
+        <class>ma.fstt.persistance.Panier</class>
+        <class>ma.fstt.persistance.Produit</class>
+        <class>ma.fstt.persistance.Vitrine</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lab2"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/atelier2"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
@@ -22,6 +25,5 @@
             <!-- Optional: Cache settings (si nécessaire) -->
             <property name="eclipselink.cache.shared.default" value="false"/>
         </properties>
-
     </persistence-unit>
 </persistence>

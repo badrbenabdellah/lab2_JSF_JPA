@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Liste des Produits</title>
+        <style type="text/css">
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f7fb;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+
+            h1 {
+                color: #000000; /* Bleu vif */
+                margin-top: 40px;
+                font-size: 32px;
+            }
+
+            table {
+                width: 90%;
+                margin: 30px auto;
+                border-collapse: collapse;
+                background-color: white;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre douce pour un look moderne */
+                border-radius: 8px; /* Coins arrondis */
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f9fafb; /* Fond clair pour les en-têtes */
+                font-weight: bold;
+                color: #2c3e50;
+                font-size: 16px;
+            }
+
+            td {
+                background-color: #fff;
+                font-size: 14px;
+                color: #555;
+            }
+
+            td:hover {
+                background-color: #ecf0f1; /* Fond clair lors du survol des cellules */
+            }
+
+            .button {
+                padding: 12px 25px;
+                background-color: #FF9900;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                margin: 10px;
+            }
+
+            .button:hover {
+                background-color: #FF9900; /* Couleur de survol plus sombre */
+                transform: scale(1.05); /* Effet de zoom */
+            }
+
+            .add-button {
+                background-color: #FF9900; /* Vert pour le bouton d'ajout */
+            }
+
+            .add-button:hover {
+                background-color: #FF9900;
+            }
+
+            .delete-button {
+                background-color: #e74c3c; /* Rouge pour le bouton de suppression */
+            }
+
+            .delete-button:hover {
+                background-color: #c0392b;
+            }
+
+            /* Style responsive pour petits écrans */
+            @media (max-width: 768px) {
+                table {
+                    width: 100%;
+                    font-size: 12px;
+                }
+
+                .button {
+                    padding: 8px 18px;
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Liste des Produits</h1>
+        <h:form>
+            <h:dataTable value="#{produitBean.lister()}" var="p" border="1" cellpadding="5">
+                <h:column>
+                    <f:facet name="header">Nom</f:facet>
+                    #{p.nom_produit}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Prix</f:facet>
+                    #{p.prix}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{p.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantité en stock</f:facet>
+                    #{p.quantite_stock}
+                </h:column>
+                <!-- Colonne pour le bouton de suppression -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="Supprimer"
+                                     action="#{produitBean.supprimer(p.id_produit)}"
+                                     update=":form:table"
+                                     onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');"
+                                     styleClass="button delete-button"/>
+                </h:column>
+            </h:dataTable>
+
+            <!-- Bouton d'ajout avec un style spécifique -->
+            <h:commandButton value="Ajouter un produit" action="addProduit.xhtml" styleClass="button add-button" />
+        </h:form>
+    </h:body>
+</f:view>
+</html>

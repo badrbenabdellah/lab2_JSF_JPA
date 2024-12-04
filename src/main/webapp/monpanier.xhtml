@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Mon Panier</title>
+        <style type="text/css">
+            /* Style global pour la page */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f8f9fa;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* En-tête de la page */
+            h1 {
+                text-align: center;
+                color: #007bff;
+                margin-top: 40px;
+                font-size: 32px;
+                font-weight: 600;
+            }
+
+            /* Mise en forme du formulaire */
+            form {
+                max-width: 900px;
+                margin: 20px auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            /* Style du bouton */
+            .command-button {
+                padding: 12px 25px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .command-button:hover {
+                background-color: #0056b3;
+                transform: scale(1.05);
+            }
+
+            /* Style du tableau */
+            .data-table {
+                width: 100%;
+                margin-top: 30px;
+                border-collapse: collapse;
+                background-color: #f8f9fa;
+            }
+
+            .data-table td, .data-table th {
+                padding: 15px;
+                border-bottom: 1px solid #ddd;
+                text-align: center;
+            }
+
+            .data-table th {
+                font-weight: bold;
+                background-color: #007BFF;
+                color: white;
+            }
+
+            .data-table td {
+                background-color: #ffffff;
+                font-size: 14px;
+            }
+
+            .data-table td:hover {
+                background-color: #f1f1f1;
+            }
+
+            /* Panneau Total du Panier */
+            .panel-group {
+                margin-top: 30px;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            /* Total du panier */
+            .total-price {
+                font-size: 22px;
+                font-weight: bold;
+                color: #28a745;
+            }
+
+            /* Style responsive */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 24px;
+                }
+
+                .command-button {
+                    width: 100%;
+                    font-size: 14px;
+                }
+
+                .data-table td, .data-table th {
+                    padding: 10px;
+                }
+
+                .panel-group {
+                    font-size: 18px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Votre Panier</h1>
+        <h:form>
+            <!-- Bouton pour charger le panier -->
+            <h:commandButton value="Charger le Panier" action="#{panierBean.chargerPanier}" styleClass="command-button" />
+
+            <!-- Tableau des produits dans le panier -->
+            <h:dataTable value="#{panierBean.panier.produits.entrySet().toArray()}" var="item" border="1" cellpadding="5" styleClass="data-table">
+                <h:column>
+                    <f:facet name="header">Nom du Produit</f:facet>
+                    #{item.key.nom_produit}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Prix</f:facet>
+                    #{item.key.prix} MAD
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantité</f:facet>
+                    #{item.value}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Sous-total</f:facet>
+                    #{item.key.prix * item.value} MAD
+                </h:column>
+            </h:dataTable>
+
+            <!-- Panneau affichant le total du panier -->
+            <h:panelGroup styleClass="panel-group">
+                <h:outputText value="Total du Panier : " />
+                <h:outputText value="#{panierBean.calculerTotal()} MAD" styleClass="total-price" />
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

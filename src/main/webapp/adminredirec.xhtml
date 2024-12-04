@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Page de Redirection</title>
+        <style type="text/css">
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f8ff;
+                color: #ecb976;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            h1 {
+                margin-top: 50px;
+                font-size: 32px;
+                color: #000000;
+            }
+
+            p {
+                font-size: 18px;
+                margin-bottom: 30px;
+                color: #000000;
+            }
+
+            /* Centrer et espacer les boutons */
+            h:form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px; /* Espace entre les boutons */
+                margin-top: 20px;
+            }
+
+            /* Boutons stylisés */
+            .button {
+                padding: 15px 30px;
+                background-color: #FF9900;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.2s ease, background-color 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .button:hover {
+                background-color: #FF9900;
+                transform: scale(1.05);
+            }
+
+            /* Style pour petit écran */
+            @media (max-width: 768px) {
+                h:form {
+                    gap: 15px; /* Réduit l'espace entre les boutons */
+                }
+
+                .button {
+                    font-size: 14px;
+                    padding: 12px 20px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Bienvenue sur la Page Principale</h1>
+        <p>Veuillez choisir une section à gérer :</p>
+
+        <h:form>
+            <!-- Bouton 1 -->
+            <h:commandButton value="Gestion des Paniers" action="listerPaniers.xhtml" styleClass="button" />
+
+            <!-- Bouton 2 -->
+            <h:commandButton value="Gestion des Produits" action="listProduit.xhtml" styleClass="button" />
+
+            <!-- Bouton 3 -->
+            <h:commandButton value="Gestion des Vitrines" action="listVitrines.xhtml" styleClass="button" />
+        </h:form>
+    </h:body>
+</f:view>
+</html>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Gestion des Vitrines</title>
+        <style type="text/css">
+            /* Style global de la page */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f5f7fa;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+
+            h1 {
+                color: #000000;
+                margin-top: 40px;
+                font-size: 32px;
+                font-weight: bold;
+            }
+
+            /* Style du formulaire */
+            .form-container {
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 50%;
+                margin: 30px auto;
+                text-align: left;
+            }
+
+            .form-container h:outputLabel {
+                font-size: 16px;
+                font-weight: 600;
+                color: #555;
+                margin-bottom: 10px;
+            }
+
+            .form-container h:inputText {
+                width: 100%;
+                padding: 12px;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            /* Style du tableau */
+            table {
+                width: 80%;
+                margin: 40px auto;
+                border-collapse: collapse;
+                background-color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            th, td {
+                padding: 14px;
+                text-align: center;
+                border: 1px solid #ddd;
+                font-size: 14px;
+            }
+
+            th {
+                background-color: #FF9900;
+                color: white;
+                font-weight: bold;
+            }
+
+            td {
+                background-color: #ffffff;
+                color: #555;
+            }
+
+            td:hover {
+                background-color: #f9f9f9;
+            }
+
+            /* Style des boutons dans la table */
+            .table-button {
+                padding: 10px 20px;
+                background-color: #dc3545;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .table-button:hover {
+                background-color: #c82333;
+                transform: scale(1.05);
+            }
+
+            /* Style du bouton d'ajout dans le formulaire */
+            .form-button {
+                padding: 12px 24px;
+                background-color: #FF9900;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .form-button:hover {
+                background-color: #FF9900;
+                transform: scale(1.05);
+            }
+
+            /* Style responsive */
+            @media (max-width: 768px) {
+                .form-container {
+                    width: 80%;
+                }
+
+                table {
+                    width: 90%;
+                }
+
+                h1 {
+                    font-size: 28px;
+                }
+
+                .form-button {
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <!-- Formulaire d'ajout de vitrine -->
+        <h1>Ajouter une Vitrine</h1>
+        <h:form class="form-container">
+            <h:panelGrid columns="1" cellpadding="5">
+                <!-- Champ pour le nom de la vitrine -->
+                <h:outputLabel for="nom" value="Nom de la vitrine : " />
+                <h:inputText id="nom" value="#{vitrineBean.nomVitrine}" required="true" />
+            </h:panelGrid>
+
+            <!-- Bouton pour sauvegarder la vitrine -->
+            <h:commandButton value="Ajouter" action="#{vitrineBean.save}" styleClass="form-button" />
+        </h:form>
+
+        <!-- Liste des vitrines -->
+        <h1>Liste des Vitrines</h1>
+        <h:form>
+            <h:dataTable value="#{vitrineBean.lister()}" var="vitrine" border="1" cellpadding="5">
+                <!-- Colonne pour l'ID de la vitrine -->
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{vitrine.id_vitrine}" />
+                </h:column>
+
+                <!-- Colonne pour le nom de la vitrine -->
+                <h:column>
+                    <f:facet name="header">Nom de la Vitrine</f:facet>
+                    <h:outputText value="#{vitrine.nom_vitrine}" />
+                </h:column>
+
+                <!-- Colonne pour les actions (Suppression) -->
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:commandButton value="Supprimer" action="#{vitrineBean.supprimer(vitrine.id_vitrine)}" styleClass="table-button">
+                        <f:ajax render="@form" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

@@ -1,27 +1,33 @@
 package ma.fstt.persistance;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
+import ma.fstt.persistance.Vitrine;
 
 @Entity
 @Table(name = "produit")
 @Data
-
 public class Produit {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_produit;
 
-    @Column( nullable = true)
+    @Column(nullable = false)
     private String nom_produit;
-    @Column( nullable = true)
-    private String description_produit;
 
-    @Column( nullable = true)
-    private float prix_produit;
+    @Column(nullable = false)
+    private Double prix;
 
-    @Column( nullable = true)
-    private int stock_produit;
+    @Column(nullable = true)
+    private String description;
+
+    @Column(nullable = true)
+    private Integer quantite_stock;
+    // Clé étrangère vers la vitrine (relation @ManyToOne)
+    @ManyToOne
+    @JoinColumn(name = "id_vitrine")  // Colonne qui sera utilisée comme clé étrangère dans la table produit
+    private Vitrine vitrine;
 
 }
+

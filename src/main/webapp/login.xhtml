@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Connexion</title>
+        <style type="text/css">
+            /* Style global pour la page */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #e9ecef;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 400px;
+                margin: 100px auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .title {
+                color:  #FF9900;
+                font-size: 28px;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+
+            /* Formulaire */
+            .login-form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .label {
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            }
+
+            .input-text {
+                padding: 12px;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                outline: none;
+                width: 100%;
+                transition: border-color 0.3s ease;
+            }
+
+            .input-text:focus {
+                border-color:  #FF9900;
+            }
+
+            .button {
+                background-color: #FF9900;
+                color: white;
+                padding: 14px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .button:hover {
+                background-color:  #FF9900;
+                transform: scale(1.05);
+            }
+
+            /* Style des messages d'erreur */
+            .error-message {
+                color: green;
+                font-size: 14px;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .error {
+                color: green;
+                font-size: 14px;
+                margin-top: -10px;
+            }
+
+            /* Style pour le lien "Créer un compte" */
+            .create-account-link {
+                margin-top: 20px;
+                font-size: 14px;
+            }
+
+            .create-account-link a {
+                color: #FF9900;
+                text-decoration: none;
+            }
+
+            .create-account-link a:hover {
+                text-decoration: underline;
+            }
+
+            /* Style responsive */
+            @media (max-width: 768px) {
+                .container {
+                    padding: 20px;
+                }
+
+                .title {
+                    font-size: 24px;
+                }
+
+                .input-text {
+                    font-size: 14px;
+                }
+
+                .button {
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1 class="title">Page de Connexion</h1>
+
+            <!-- Affichage des messages d'erreur -->
+            <h:messages globalOnly="true" styleClass="error-message" />
+
+            <h:form class="login-form">
+                <h:outputLabel for="email" value="Email" class="label" />
+                <h:inputText id="email" value="#{clientBean.email}" required="true" class="input-text" />
+                <h:message for="email" class="error" />
+
+                <h:outputLabel for="motDePasse" value="Mot de passe" class="label" />
+                <h:inputSecret id="motDePasse" value="#{clientBean.motDePasse}" required="true" class="input-text" />
+                <h:message for="motDePasse" class="error" />
+
+                <h:commandButton value="Se connecter" action="#{clientBean.connecter}" class="button" />
+            </h:form>
+
+            <!-- Lien "Créer un compte" -->
+            <div class="create-account-link">
+                <h:link value="Créer un compte" outcome="signup.xhtml" />
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>

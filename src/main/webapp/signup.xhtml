@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Inscription</title>
+        <style type="text/css">
+            /* Style global de la page */
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f7fa;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            /* Conteneur principal */
+            .container {
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 400px;
+            }
+
+            /* Titre de la page */
+            h1 {
+                text-align: center;
+                color: #FF9900;
+                font-size: 28px;
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+
+            /* Formulaire d'inscription */
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                font-size: 16px;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                outline: none;
+            }
+
+            .form-group input:focus {
+                border-color: #FF9900;
+            }
+
+            /* Bouton d'inscription */
+            .btn {
+                width: 100%;
+                padding: 12px;
+                background-color: #ff9900;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #FF9900;
+            }
+
+            /* Lien de connexion */
+            .login-link {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                font-size: 14px;
+            }
+
+            .login-link a {
+                color: #FF9900;
+                text-decoration: none;
+            }
+
+            .login-link a:hover {
+                text-decoration: underline;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 24px;
+                }
+
+                .form-group input {
+                    font-size: 14px;
+                }
+
+                .btn {
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Page d'Inscription</h1>
+
+            <!-- Formulaire d'inscription -->
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel for="email" value="Email:" />
+                    <h:inputText id="email" value="#{clientBean.email}" required="true" />
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="motDePasse" value="Mot de Passe:" />
+                    <h:inputSecret id="motDePasse" value="#{clientBean.motDePasse}" required="true" />
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="nom" value="Role:" />
+                    <h:inputText id="nom" value="#{clientBean.nom}" required="true" />
+                </div>
+
+                <!-- Bouton d'inscription -->
+                <h:commandButton value="S'inscrire" action="#{clientBean.inscrire}" styleClass="btn" />
+            </h:form>
+
+            <!-- Lien vers la page de connexion -->
+            <div class="login-link">
+                <h:link value="Déjà un compte? Se connecter" outcome="login.xhtml" />
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>
